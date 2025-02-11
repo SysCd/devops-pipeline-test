@@ -9,7 +9,7 @@ pool:
 steps:
   - task: AzureCLI@2
     inputs:
-      azureSubscription: 'Azure subscription 1'  # Your Azure service connection name
+      azureSubscription: 'Azure subscription connection'  # Your Azure service connection name
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |

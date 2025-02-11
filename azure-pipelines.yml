@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+      - main  # This triggers the pipeline when you push to the 'main' branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use an Ubuntu-based environment for the pipeline
+
+steps:
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Azure subscription 1'  # Your Azure service connection name
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        # SSH into your Azure VM and deploy the HTML content
+        ssh -o StrictHostKeyChecking=no azureuser@172.166.165.227 "echo '$(Build.SourcesDirectory)/index.html' > /var/www/html/index.html && sudo systemctl restart nginx"
+    displayName: 'Deploy HTML to Azure VM'
